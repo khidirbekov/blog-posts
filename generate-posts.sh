@@ -1,5 +1,5 @@
 # Создаем пустой JSON массив
-json="["
+json="{"
 
 # Проходимся по всем директориям в текущем каталоге
 for dir in */; do
@@ -14,13 +14,13 @@ for dir in */; do
         content=$(<"$dir/index.md")
 
         # Добавляем объект в JSON массив
-        json+="{\"path\":\"$dir\",\"title\":\"$title\",\"description\":\"$description\",\"content\":\"$content\"},"
+        json+="\"$dir"\"":{\"title\":\"$title\",\"description\":\"$description\",\"content\":\"$content\"},"
     fi
 done
 
 # Удаляем последнюю запятую и закрываем JSON массив
 json=${json%,}
-json+="]"
+json+="}"
 
 # Записываем JSON в файл
 echo "$json" > output.json
